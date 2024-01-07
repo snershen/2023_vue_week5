@@ -33,10 +33,12 @@ const app = Vue.createApp({
   methods: {
     getProduct() {
       const apiUrl = `${apiFullUrl}/products`;
+      this.isLoading = true;
       axios
         .get(apiUrl)
         .then((res) => {
           this.productList = res.data.products;
+          this.isLoading = false;
         })
         .catch((err) => {
           console.log(err);
