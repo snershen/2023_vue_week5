@@ -23,7 +23,7 @@
 
   <body>
     <div id="app">
-      <loading v-model:active="isLoading" :can-cancel="false" :is-full-page="fullPage"></loading>
+      <loading :active="isLoading" :can-cancel="false" :is-full-page="fullPage"></loading>
       <div class="container">
         <div class="mt-4">
           <!-- 產品Modal -->
@@ -89,7 +89,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <template v-if="cartList.carts.length">
+                  <template v-if="cartList.carts?.length > 0">
                     <tr v-for="item in cartList.carts" :key="item.id">
                       <td>
                         <button type="button" class="btn btn-outline-danger btn-sm" @click.prevent="delCart(item)">
@@ -122,17 +122,17 @@
                     </tr>
                   </template>
                 </tbody>
-                <tfoot v-if="cartList.carts.length">
+                <tfoot v-if="cartList.carts?.length > 0">
                   <tr>
                     <td colspan="3" class="text-end">總計</td>
                     <td class="text-end">{{ cartList.total }}</td>
                   </tr>
                 </tfoot>
               </table>
-              <div class="text-end" v-if="cartList.carts.length">
+              <div class="text-end" v-if="cartList.carts?.length > 0">
                 <button class="btn btn-outline-danger" type="button" @click.prevent="delAllCart">清空購物車</button>
               </div>
-              <div v-if="cartList.carts.length === 0">
+              <div v-if="cartList.carts?.length > 0 === 0">
                 <p class="opacity-50 text-center">購物車尚未加入商品</p>
               </div>
             </div>

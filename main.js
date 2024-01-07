@@ -32,8 +32,8 @@ const app = Vue.createApp({
   mixins: [ToastMixin],
   methods: {
     getProduct() {
-      const apiUrl = `${apiFullUrl}/products`;
       this.isLoading = true;
+      const apiUrl = `${apiFullUrl}/products`;
       axios
         .get(apiUrl)
         .then((res) => {
@@ -50,11 +50,13 @@ const app = Vue.createApp({
       productModal.showModal();
     },
     getCart() {
+      this.isLoading = true;
       const apiUrl = `${apiFullUrl}/cart`;
       axios
         .get(apiUrl)
         .then((res) => {
           this.cartList = res.data.data;
+          this.isLoading = false;
         })
         .catch((err) => {
           console.log(err);
@@ -110,7 +112,6 @@ const app = Vue.createApp({
     },
     delAllCart() {
       const apiUrl = `${apiFullUrl}/carts`;
-
       Swal.fire({
         title: "確定移除所有商品？",
         icon: "info",
