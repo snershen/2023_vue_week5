@@ -120,7 +120,6 @@ const app = Vue.createApp({
         confirmButtonText: "確認",
         cancelButtonText: "取消",
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           this.isLoading = true;
           axios
@@ -164,7 +163,7 @@ const app = Vue.createApp({
     },
     submitOrder() {
       const apiUrl = `${apiFullUrl}/order`;
-      if (this.cartList.carts) {
+      if (this.cartList.carts.length < 1) {
         this.showToast({
           icon: "error",
           title: "購物車是空的",
